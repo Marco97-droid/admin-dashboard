@@ -1,0 +1,43 @@
+
+<!-- sidebar right-->
+<div class="overlay" *ngIf="userProfile.rs_open" (click)="userProfile.rs_open_close()" [@rs_open]="userProfile.rs_open"></div>
+<app-right-sidebar  [info]="info" *ngIf="userProfile.user"></app-right-sidebar>
+
+<app-heading-pagina [info]="info"></app-heading-pagina>
+
+
+<div class="container-fluid px-md-5">
+   
+  <div class="col-lg-3 col-md-6 col-sm-12">
+    
+    <!-- Card  Profilo-->
+    <mat-card class="overflow-hidden position-relative" *ngIf="userProfile.user">
+      <div class="bg-accent w-100 profile-header ">
+        <a class="position-absolute top-10">
+          
+        </a>
+        <a mat-mini-fab matTooltip="Modifica" (click)="userProfile.rs_open_close()" class="bg-transparent m-2 text-center box-shadow-none edit-user">
+          <i-feather name="edit-3" class="text-white icon"></i-feather>
+        </a>
+      </div>
+      <mat-card-content>
+        <div class="user-photo mx-auto bg-white" style="background-image: url('{{userProfile.user.foto}}');"></div>
+        <div class="user-name text-center">
+          <p class="mb-0 mt-2 text-bold">{{userProfile.user.name}}</p>
+          <p class="text-3">{{userProfile.user.email}}</p>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  
+    
+  <!-- Load Card  Profilo-->
+  <mat-card class="overflow-hidden bg-preview spinner-grow load-card-user" *ngIf="!userProfile.user"></mat-card>
+  
+  </div>
+
+
+  <div class="col-lg-9 col-md-6 col-sm-12">
+    
+  </div>
+
+</div>

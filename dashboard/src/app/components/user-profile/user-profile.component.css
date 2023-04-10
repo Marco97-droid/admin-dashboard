@@ -1,0 +1,22 @@
+.profile-header {
+    height: 100px;
+}
+.user-photo {
+    border-radius: 50%;
+    width: 150px;
+    height: 150px;
+    border:5px solid #fff;
+    margin-top:-75px;
+    background-size:cover;
+    background-position: center;
+    background-repeat:no-repeat;
+}
+.edit-user {
+    right: 0;
+    position: absolute;
+}
+.load-card-user {
+    width: 100%;
+    height: 250px;
+    
+}

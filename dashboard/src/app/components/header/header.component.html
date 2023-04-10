@@ -1,0 +1,32 @@
+<div id="header" class="w-100 bg-white">
+  <button mat-button (click)="open_close_sidenav()" id="hamburger" class="ms-2">
+    <i-feather name="menu" class="text-dark"></i-feather>
+  </button>
+
+  <!-- Utente loggato-->
+  <div class="me-4 d-flex align-items-center" *ngIf="userProfile.user">
+    <div class="foto-profilo" style="background-image: url('{{userProfile.user.foto}}');"></div>
+    <button mat-button [matMenuTriggerFor]="menu" class="text-4">{{ userProfile.user.name }} 
+        <i-feather name="chevron-down" class="text-dark text-3"></i-feather>
+    </button>
+    <mat-menu #menu="matMenu">
+            <button mat-menu-item routerLink="/profile"> <i-feather name="user" class="text-dark icon" ></i-feather> Profilo</button>
+            <button mat-menu-item (click)="userProfile.signOut()"> <i-feather name="log-out" class="text-dark icon"></i-feather> Logout</button>
+    </mat-menu>
+  </div>
+
+  <!--Loading utente loggato-->
+  <div class="me-4 d-flex align-items-center" *ngIf="!userProfile.user">
+    <div
+      class="bg-preview spinner-grow"
+      style="width: 40px; height: 40px"
+    ></div>
+    <p
+      class="text-3 m-0 rounded ms-2 spinner-grow bg-preview"
+      style="height: 12px; width: fit-content"
+    >
+      Nome User
+    </p>
+  </div>
+</div>
+<mat-divider></mat-divider>

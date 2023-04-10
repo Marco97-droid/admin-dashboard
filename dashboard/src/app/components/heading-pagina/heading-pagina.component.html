@@ -1,0 +1,24 @@
+<div class="container-fluid d-flex py-5 px-md-5 align-items-center justify-content-between">
+    <div class="head-left d-flex ">
+        <div class="block-icon">
+            <div class="text-light bg-accent rounded h-auto" style="padding: 10px;">
+                <i-feather name="{{info.icona}}" class="justify-content-center align-middle" style="width:29px; height:29px"></i-feather>
+            </div>
+        </div>
+        <div class="block-title-descr px-3"> 
+            <p class="mb-0 title text-5 ">{{info.pagina}}</p>
+            <p class="mb-0 text-3 fw-100"> {{info.descrizione}}</p>
+        </div>
+    </div>
+
+    <div class="head-right  d-flex align-items-center text-3">
+        <p>
+        <a routerLink="/dashboard" class="px-2"><i-feather name="home" class="icon-breadcrumb justify-content-center align-middle"></i-feather></a>
+         / 
+        <span class="px-2">{{info.pagina}}</span>
+        </p>
+    </div>
+
+</div>
+
+

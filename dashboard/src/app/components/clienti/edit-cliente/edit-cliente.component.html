@@ -1,0 +1,162 @@
+<div id="right-sidebar" [@rs_open]="clienti.rs_open">
+  <a
+    mat-mini-fab
+    matTooltip="Chiudi"
+    (click)="clienti.rs_open_close()"
+    [@rs_open]="clienti.rs_open"
+    class="bg-transparent m-2 text-center box-shadow-none close-sidebar-right"
+  >
+    <i-feather name="x" class="text-dark icon"></i-feather>
+  </a>
+
+  <mat-progress-bar
+    mode="indeterminate"
+    class=""
+    *ngIf="loading"
+  ></mat-progress-bar>
+
+  <form
+    *ngIf="cliente"
+    class="w-100 px-3 pt-5"
+    [formGroup]="editCustomerForm"
+    (ngSubmit)="editCustomer()"
+  >
+    <p class="font-weight-bolder title">Informazioni generali</p>
+
+    <!-- input Ragione Sociale-->
+    <mat-form-field class="w-100 mb-2" appearance="outline">
+      <mat-label>Ragione sociale</mat-label>
+      <input
+        matInput
+        type="text"
+        formControlName="ragione_sociale"
+        [errorStateMatcher]="matcher"
+      />
+      <mat-error
+        *ngIf="
+          editCustomerForm.controls['ragione_sociale'].hasError('required')
+        "
+      >
+        Campo obbligatorio
+      </mat-error>
+    </mat-form-field>
+
+    <!-- input Ragione Sociale-->
+    <mat-form-field class="w-100" appearance="outline">
+      <mat-label>Partita Iva</mat-label>
+      <input
+        matInput
+        type="text"
+        formControlName="partita_iva"
+        [errorStateMatcher]="matcher"
+      />
+      <mat-error
+        *ngIf="editCustomerForm.controls['partita_iva'].hasError('required')"
+      >
+        Campo obbligatorio
+      </mat-error>
+    </mat-form-field>
+    <div *ngIf="errors?.partita_iva && !editCustomerForm.controls['partita_iva'].hasError('required')" class="pt-3 error-server">
+        {{ errors?.partita_iva }}
+    </div>
+
+    <!--Input Logo-->
+    <div class="file-drop-area">
+      <span class="fake-btn">Scegli File</span>
+      <span class="file-msg">{{
+        editCustomerForm.controls["image"].value
+          ? image.name
+          : "o trascina il file qui"
+      }}</span>
+      <input class="file-input" type="file" (change)="uploadFile($event)" />
+    </div>
+    <div *ngIf="errors?.logo" class=" mt-1 error-server">
+        {{ errors?.logo }}
+    </div>
+
+    <mat-divider class="my-4"></mat-divider>
+
+    <p class="font-weight-bolder title">Ubicazione</p>
+
+    <!-- input Indirizzo-->
+    <mat-form-field class="w-100 mb-2" appearance="outline">
+      <mat-label>Indirizzo</mat-label>
+      <input
+        matInput
+        type="text"
+        formControlName="indirizzo"
+        [errorStateMatcher]="matcher"
+      />
+    </mat-form-field>
+
+    <!--Input Citta-->
+    <mat-form-field class="w-75 mb-2 pe-1" appearance="outline">
+      <mat-label>Città</mat-label>
+      <input
+        matInput
+        type="text"
+        formControlName="citta"
+        [errorStateMatcher]="matcher"
+      />
+    </mat-form-field>
+    <!--Input provincia-->
+    <mat-form-field class="w-25 mb-2 ps-1" appearance="outline">
+      <mat-label>Provincia</mat-label>
+      <input
+        matInput
+        type="text"
+        formControlName="provincia"
+        [errorStateMatcher]="matcher"
+      />
+    </mat-form-field>
+    <!-- input cap-->
+    <mat-form-field class="w-25 pe-1" appearance="outline">
+      <mat-label>CAP</mat-label>
+      <input
+        matInput
+        type="text"
+        formControlName="cap"
+        [errorStateMatcher]="matcher"
+      />
+    </mat-form-field>
+    <!--Input stato-->
+    <mat-form-field class="w-75 ps-1" appearance="outline">
+      <mat-label>Stato</mat-label>
+      <input
+        matInput
+        type="text"
+        formControlName="stato"
+        [errorStateMatcher]="matcher"
+      />
+    </mat-form-field>
+
+    <mat-divider class="my-4"></mat-divider>
+
+    <p class="font-weight-bolder title">Posizione</p>
+    <!--Input Latitudine-->
+    <mat-form-field class="w-100 mb-2 ps-1" appearance="outline">
+        <mat-label>Latitudine</mat-label>
+        <input
+          matInput
+          type="number"
+          step="0.00000000001"
+          formControlName="latitudine"
+          [errorStateMatcher]="matcher"
+        />
+      </mat-form-field>
+      <!--Input Longitudine-->
+    <mat-form-field class="w-100 mb-2 ps-1" appearance="outline">
+        <mat-label>Longitudine</mat-label>
+        <input
+          matInput
+          type="number"
+          step="0.00000000001"
+          formControlName="longitudine"
+          [errorStateMatcher]="matcher"
+        />
+      </mat-form-field>
+      
+      <button mat-raised-button color="primary" class="bg-dark text-light mt-3" type="submit" [disabled]="loading">Salva</button>
+
+  </form>
+</div>

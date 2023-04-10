@@ -1,0 +1,32 @@
+.section-with-shape-divider {
+    height: 100vh;
+    background-color: #f2f2f2;
+}
+.color-three {
+    fill:#f2f2f2;
+}
+.login-shape {
+background-color: var(--primary);
+}
+.login-shape .color-two {
+    fill:var(--accent);
+}
+.login-container {
+    width:100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top:-100px;
+}
+.login-card {
+    max-width:400px;
+}
+.mat-mdc-card-header-text {
+    width: 100% !important;
+}
+.register:hover {
+    color: var(--accent) !important;
+    transition: all ease 0.3s;
+}

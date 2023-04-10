@@ -1,0 +1,24 @@
+.foto {
+    width:35px;
+    height: 35px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-radius: 50%;
+    
+}
+.mat-column-id {
+    font-weight: 600;
+}
+
+
+.load-table-customer {
+    height: 400px;
+    border-radius: 5px;
+}
+
+#customers-table .mat-mdc-row:hover {
+    background-color: rgba(0, 0, 0, 0.01) !important;
+    transition: all ease 0.3s;
+    cursor: pointer;
+}

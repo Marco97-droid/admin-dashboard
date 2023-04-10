@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+</head>
+<body>
+
+  <router-outlet *ngIf="!isSignedIn"></router-outlet>
+  
+  <mat-sidenav-container class=" h-100 bg-light" *ngIf="isSignedIn"> 
+    <!--Menu sidebar left-->
+    <mat-sidenav #sidenav mode="side" [(opened)]="opened"
+                 (closed)="events.push('close!')" style="width:250px;" class="bg-dark border-0">
+
+                 <!--Contenuto Sidenav-->
+                 <app-sidenav></app-sidenav>
+    </mat-sidenav>
+    <mat-sidenav-content id="sidenav-content">
+
+        <app-header></app-header>
+
+         <router-outlet *ngIf="isSignedIn"></router-outlet>
+
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+
+</body>
+
+</html>

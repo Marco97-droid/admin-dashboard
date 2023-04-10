@@ -1,0 +1,189 @@
+<section
+  class="section section-with-shape-divider section-parallax bg-tertiary border-0 m-0"
+  style="position: relative; overflow: hidden"
+>
+  <div
+    class="parallax-background fadeIn animated"
+    style="
+      background-size: cover;
+      position: absolute;
+      top: 0px;
+      left: 0px;
+      width: 100%;
+      height: 110%;
+      transform: translate3d(0px, 46.2321px, 0px);
+      background-position-x: 50%;
+    "
+  ></div>
+  <div class="shape-divider shape-divider-bottom" style="height: 576px">
+    <svg
+      class="login-shape"
+      version="1.1"
+      xmlns="http://www.w3.org/2000/svg"
+      xmlns:xlink="http://www.w3.org/1999/xlink"
+      x="0px"
+      y="0px"
+      viewBox="0 0 1920 576"
+      preserveAspectRatio="xMinYMin"
+    >
+      <path
+        class="custom-svg-fill-color-tertiary color-two"
+        d="M-12,66c13.35,40.03,28.35,72.62,41,97c12.78,24.63,30.56,58.44,62,97c19.57,24,36.66,40.31,49,52
+        c41.02,38.87,77.1,62.82,85,68c53.78,35.23,100.92,51.3,148,67c87.6,29.21,158.49,37.98,201,43c63.9,7.55,112.08,7.78,160,8
+        c16.52,0.08,84.41,0.17,181-8c98.88-8.36,172.43-20.7,233-31c42.88-7.29,141.31-24.85,267-56c127.06-31.5,220.66-61.69,296-86
+        c89.27-28.8,159.58-54.68,174-60c16.6-6.13,30.39-11.34,40-15c0,113.33,0,226.67,0,340c-644.33,0-1288.67,0-1933,0
+        C-9.33,410-10.67,238-12,66z"
+      ></path>
+      <path
+        class="color-three"
+        d="M-5,3c1.21,5.32,2.98,13.29,5,23c4.38,21.08,6.71,34.95,8,42c7.08,38.6,19.7,71.54,26,88
+        c8.52,22.26,16.34,38.54,19,44c5.4,11.07,16.38,32.61,33,58c28.88,44.11,57.48,73.41,64,80c6.89,6.97,38.98,38.97,91,72
+        c57.09,36.25,106.11,53.37,143,66c66.98,22.93,119.93,31.44,162,38c81,12.63,143.81,13.53,189,14c62.45,0.65,109.33-2.68,156-6
+        c35.74-2.54,89.63-7.16,155-16c68.17-9.22,117.88-18.83,170-29c110.32-21.52,194.58-42.54,224-50c131.43-33.34,227.73-64.9,286-84
+        c93.88-30.77,155.18-54.57,184-66c6.29-2.49,11.48-4.58,15-6c0,102.67,0,205.33,0,308c-643.33,0-1286.67,0-1930,0C-5,387-5,195-5,3z
+        "
+      ></path>
+    </svg>
+  </div>
+</section>
+
+<div class="login-container">
+  <mat-card class="login-card">
+    <form class="form-signin" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+      <mat-card-header class="justify-content-center">
+        <mat-card-subtitle class="w-100 text-center"></mat-card-subtitle>
+        <mat-card-title class="w-100 text-center mb-3 mx-auto"
+          >Login</mat-card-title
+        >
+      </mat-card-header>
+      <mat-card-content>
+        <!-- Input Email -->
+        <mat-form-field class="w-100 mb-3" appearance="outline">
+          <mat-label>Email</mat-label>
+          <input
+            type="email"
+            matInput
+            [formControl]="emailFormControl"
+            [errorStateMatcher]="matcher"
+            formControlName="email"
+            placeholder="Ex. pat@example.com"
+          />
+          <mat-error
+            *ngIf="
+              emailFormControl.hasError('email') &&
+              !emailFormControl.hasError('required')
+            "
+          >
+            Inserisci un indirizzo email valido
+          </mat-error>
+          <mat-error *ngIf="emailFormControl.hasError('required')">
+            Il campo Email è <strong>obbligatorio</strong>
+          </mat-error>
+        </mat-form-field>
+
+        <!-- Input password-->
+        <mat-form-field class="w-100 mb-3" appearance="outline">
+          <mat-label>Inserisci la password</mat-label>
+          <input
+            matInput
+            [type]="hide ? 'password' : 'text'"
+            formControlName="password"
+            [formControl]="passwordFormControl"
+          />
+          <button
+            mat-icon-button
+            matSuffix
+            (click)="hide = !hide"
+            [attr.aria-label]="'Hide password'"
+            [attr.aria-pressed]="hide"
+          >
+            <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
+          </button>
+          <mat-error *ngIf="passwordFormControl.hasError('required')">
+            Il campo Password è <strong>obbligatorio</strong>
+          </mat-error>
+        </mat-form-field>
+
+        <mat-divider></mat-divider>
+      </mat-card-content>
+
+      <mat-card-actions class="justify-content-center flex-wrap my-2">
+        <button mat-raised-button color="primary" class="w-100" type="submit" [disabled]="loading">
+          Login
+        </button>
+
+        Non hai un account?
+        <a
+          class="p-2 text-dark text-decoration-none register"
+          routerLink="/register"
+          ><b>Registrati</b></a
+        >
+      </mat-card-actions>
+    </form>
+    <mat-progress-bar mode="indeterminate" *ngIf="loading"></mat-progress-bar>
+  </mat-card>
+</div>
+<!--
+<div class="auth-wrapper">
+    <form class="form-signin" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+        <h3 class="h3 mb-3 font-weight-normal text-center">Sign in</h3>
+        
+
+        
+        <mat-form-field class="example-full-width" appearance = "outline">
+            <mat-label>Email</mat-label>
+            <input 
+                    type="email" 
+                    matInput 
+                    [formControl]="emailFormControl" 
+                    [errorStateMatcher]="matcher" 
+                    formControlName="email"
+                    placeholder="Ex. pat@example.com"
+                    >
+            <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
+              Inserisci un indirizzo email valido
+            </mat-error>
+            <mat-error *ngIf="emailFormControl.hasError('required')">
+              Il campo Email è <strong>obbligatorio</strong>
+            </mat-error>
+        </mat-form-field>
+
+        
+        <mat-form-field appearance="outline">
+            <mat-label>Inserisci la password</mat-label>
+            <input   matInput 
+                    [type]="hide ? 'password' : 'text'" 
+                    formControlName="password"
+                    [formControl]="passwordFormControl"
+                    >
+            <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+              <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </button>
+              <mat-error *ngIf="passwordFormControl.hasError('required')">
+                Il campo Password è <strong>obbligatorio</strong>
+              </mat-error>
+          </mat-form-field>
+          <button mat-raised-button color="primary" type="submit">Login</button>
+        
+        <div *ngIf="errors?.email" class="alert alert-danger mt-3">
+            {{ errors?.email }}
+        </div>
+        <div *ngIf="errors?.password" class="alert alert-danger mt-3">
+            {{ errors?.password }}
+        </div>
+        <div *ngIf="errors?.error" class="alert alert-danger mt-3">
+            {{ errors?.error }}
+        </div>
+        <!-- Login 
+        <div class="form-group">
+            <label>Email address</label>
+            <input type="email" class="form-control" formControlName="email">
+        </div>
+        <div class="form-group">
+            <label>Password</label>
+            <input type="password" class="form-control" formControlName="password">
+        </div>
+        <button type="submit" class="btn btn-block btn-primary">Log in</button>
+
+    </form>
+  </div>-->

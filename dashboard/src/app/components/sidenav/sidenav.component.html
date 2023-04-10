@@ -1,0 +1,25 @@
+<div class="container-fluid px-0">
+    <div class="col-sm-12 text-center">
+        <img src="{{base_path}}/img/logo.png" class="logo py-3">
+    </div>
+    <div class="col-sm-12 px-0">
+        <mat-list role="list" id="voci_menu">
+            
+            <!--Dashboard-->
+            <a routerLink="/dashboard">
+                <mat-list-item role="listitem">
+                        <i-feather name="grid"></i-feather>    
+                        <span>Dashboard</span>
+                </mat-list-item>
+            </a>
+            
+            <!--Clienti-->
+            <a routerLink="/clienti">
+                <mat-list-item role="listitem">
+                        <i-feather name="briefcase"></i-feather>    
+                        <span>Clienti</span>
+                </mat-list-item>
+            </a>
+        </mat-list>
+    </div>
+</div>
